@@ -80,6 +80,45 @@ describe("jasmine-sinon", function() {
       
     });
     
+    describe("calledThrice/toHaveBeenCalledThrice", function() {
+      
+      it("should not match when spy not called", function() {
+        expect(this.spy.calledThrice).toBeFalsy();
+        expect(this.spy).not.toHaveBeenCalledThrice();
+      });
+      
+      it("should not match when spy called once", function() {
+        this.spy();
+        expect(this.spy.calledThrice).toBeFalsy();
+        expect(this.spy).not.toHaveBeenCalledThrice();
+      });
+      
+      it("should not match when spy called twice", function() {
+        this.spy();
+        this.spy();
+        expect(this.spy.calledThrice).toBeFalsy();
+        expect(this.spy).not.toHaveBeenCalledThrice();
+      });
+      
+      it("should match when spy called thrice", function() {
+        this.spy();
+        this.spy();
+        this.spy();
+        expect(this.spy.calledThrice).toBeTruthy();
+        expect(this.spy).toHaveBeenCalledThrice();
+      });
+      
+      it("should not match when spy called four times", function() {
+        this.spy();
+        this.spy();
+        this.spy();
+        this.spy();
+        expect(this.spy.calledThrice).toBeFalsy();
+        expect(this.spy).not.toHaveBeenCalledThrice();
+      });
+      
+    });
+    
   });
   
 });
