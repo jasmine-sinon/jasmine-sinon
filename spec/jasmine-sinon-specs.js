@@ -119,6 +119,29 @@ describe("jasmine-sinon", function() {
       
     });
     
+    describe("calledBefore/toHaveBeenCalledBefore", function() {
+      
+      beforeEach(function() {
+        this.spyA = sinon.spy();
+        this.spyB = sinon.spy();
+      });
+      
+      it("should match when spy a called before spy b", function() {
+        this.spyA();
+        this.spyB();
+        expect(this.spyA.calledBefore(this.spyB)).toBeTruthy();
+        expect(this.spyA).toHaveBeenCalledBefore(this.spyB);
+      });
+      
+      it("should not match when spy a called after spy b", function() {
+        this.spyB();
+        this.spyA();
+        expect(this.spyA.calledBefore(this.spyB)).toBeFalsy();
+        expect(this.spyA).not.toHaveBeenCalledBefore(this.spyB);
+      });
+      
+    });
+    
   });
   
 });
