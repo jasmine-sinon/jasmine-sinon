@@ -1,12 +1,12 @@
 describe("jasmine-sinon", function() {
   
-  describe("spy matchers", function() {
+  describe("anonymous spy matchers", function() {
     
     beforeEach(function() {
       this.spy = sinon.spy();
     });
     
-    describe("called/toHaveBeenCalled matcher", function() {
+    describe("called/toHaveBeenCalled", function() {
       
       it("should not match when spy not called", function() {
         expect(this.spy.called).toBeFalsy();
@@ -119,29 +119,180 @@ describe("jasmine-sinon", function() {
       
     });
     
-    describe("calledBefore/toHaveBeenCalledBefore", function() {
+    describe("calledBefore/After - toHaveBeenCalledBefore/After", function() {
       
       beforeEach(function() {
         this.spyA = sinon.spy();
         this.spyB = sinon.spy();
       });
       
-      it("should match when spy a called before spy b", function() {
-        this.spyA();
-        this.spyB();
-        expect(this.spyA.calledBefore(this.spyB)).toBeTruthy();
-        expect(this.spyA).toHaveBeenCalledBefore(this.spyB);
+      describe("calledBefore / toHaveBeenCalledBefore", function() {
+        it("should match when spy a called before spy b", function() {
+          this.spyA();
+          this.spyB();
+          expect(this.spyA.calledBefore(this.spyB)).toBeTruthy();
+          expect(this.spyA).toHaveBeenCalledBefore(this.spyB);
+        });
+
+        it("should not match when spy a called after spy b", function() {
+          this.spyB();
+          this.spyA();
+          expect(this.spyA.calledBefore(this.spyB)).toBeFalsy();
+          expect(this.spyA).not.toHaveBeenCalledBefore(this.spyB);
+        });
       });
       
-      it("should not match when spy a called after spy b", function() {
-        this.spyB();
-        this.spyA();
-        expect(this.spyA.calledBefore(this.spyB)).toBeFalsy();
-        expect(this.spyA).not.toHaveBeenCalledBefore(this.spyB);
+      describe("calledAfter / toHaveBeenCalledAfter", function() {
+        it("should match when spy a called after spy b", function() {
+          this.spyA();
+          this.spyB();
+          expect(this.spyB.calledAfter(this.spyA)).toBeTruthy();
+          expect(this.spyB).toHaveBeenCalledAfter(this.spyA);
+        });
+
+        it("should not match when spy a called before spy b", function() {
+          this.spyB();
+          this.spyA();
+          expect(this.spyB.calledAfter(this.spyA)).toBeFalsy();
+          expect(this.spyB).not.toHaveBeenCalledAfter(this.spyA);
+        });
+      });
+      
+    });
+    
+    describe("calledOn/toHaveBeenCalledOn", function() {
+      
+      it("should match when spy called on expected object", function() {
+        expect(this.spy.calledOn(this)).toBeFalsy();
+        expect(this.spy).not.toHaveBeenCalledOn(this);
+        this.spy.call(this);
+        expect(this.spy.calledOn(this)).toBeTruthy();
+        expect(this.spy).toHaveBeenCalledOn(this);
+      });
+      
+    });
+    
+    describe("alwaysCalledOn/toHaveAlwaysBeenCalledOn/toHaveBeenAlwaysCalledOn", function() {
+      
+      it("should match when spy always called on expected object", function() {
+        this.spy.call(this);
+        this.spy.call(this);
+        expect(this.spy.alwaysCalledOn(this)).toBeTruthy();
+        expect(this.spy).toHaveBeenAlwaysCalledOn(this);
+      });
+      
+      it("should not match when spy called with other object", function() {
+        this.spy.call(this);
+        this.spy.call({});
+        expect(this.spy.alwaysCalledOn(this)).toBeFalsy();
+        expect(this.spy).not.toHaveBeenAlwaysCalledOn(this);
+      })
+      
+    });
+    
+    describe("calledWith/toHaveBeenCalledWith", function() {
+      
+      it("should match when spy called with argument", function() {
+        this.spy('arg1');
+        expect(this.spy.calledWith('arg1')).toBeTruthy();
+        expect(this.spy).toHaveBeenCalledWith('arg1');
+      });
+      
+      it("should not match when spy called with different arguments", function() {
+        this.spy('arg1');
+        expect(this.spy.calledWith('arg2')).toBeFalsy();
+        expect(this.spy).not.toHaveBeenCalledWith('arg2');
+      });
+      
+    });
+    
+    describe("alwaysCalledWith/toHaveBeenAlwaysCalledWith", function() {
+      
+      it("should match when spy always called with argument", function() {
+        this.spy('arg1');
+        this.spy('arg1', 'arg2');
+        expect(this.spy.alwaysCalledWith('arg1')).toBeTruthy();
+        expect(this.spy).toHaveBeenAlwaysCalledWith('arg1');
+      });
+      
+      it("should not match when spy not always called with argument", function() {
+        this.spy('arg1');
+        this.spy('arg2');
+        expect(this.spy.alwaysCalledWith('arg1')).toBeFalsy();
+        expect(this.spy).not.toHaveBeenAlwaysCalledWith('arg');
+      });
+      
+    });
+    
+    describe("calledWithExactly/toHaveBeenCalledWithExactly", function() {
+      
+      it("should match when spy called with exact argument set", function() {
+        this.spy('arg1', 'arg2');
+        expect(this.spy.calledWithExactly('arg1', 'arg2')).toBeTruthy();
+        expect(this.spy).toHaveBeenCalledWithExactly('arg1', 'arg2');
+      });
+      
+      it("should not match when spy called with different argument set", function() {
+        this.spy('arg1', 'arg2', 'arg3');
+        expect(this.spy.calledWithExactly('arg1', 'arg2')).toBeFalsy();
+        expect(this.spy).not.toHaveBeenCalledWithExactly('arg1', 'arg2');
+      });
+      
+    });
+    
+    describe("alwaysCalledWithExactly/toHaveBeenAlwaysCalledWithExactly", function() {
+      
+      it("should match when spy always called with exact argument set", function() {
+        this.spy('arg1', 'arg2');
+        this.spy('arg1', 'arg2');
+        expect(this.spy.alwaysCalledWithExactly('arg1','arg2')).toBeTruthy();
+        expect(this.spy).toHaveBeenAlwaysCalledWithExactly('arg1','arg2');
+      });
+      
+      it("should not match when spy called with differing argument set", function() {
+        this.spy('arg1', 'arg2');
+        this.spy('arg1', 'arg2', 'arg3');
+        expect(this.spy.alwaysCalledWithExactly('arg1','arg2')).toBeFalsy();
+        expect(this.spy).not.toHaveBeenAlwaysCalledWithExactly('arg1','arg2');
       });
       
     });
     
   });
   
+  describe("existing method spy matchers", function() {
+    
+    beforeEach(function() {
+      this.methodVal = "no";
+      this.api = {
+        myMethod: function(val) {
+          this.methodVal = val;
+        }
+      }
+      this.spy = sinon.spy(this.api, "myMethod");
+    });
+    
+    describe("boolean matcher example", function() {
+      it("should retain spy's original functionality", function() {
+        expect(this.methodVal).toEqual("no");
+        expect(this.spy).not.toHaveBeenCalled();
+        this.api.myMethod.call(this, "yes");
+        expect(this.methodVal).toEqual("yes");
+        expect(this.spy).toHaveBeenCalled();
+      });
+    });
+    
+    describe("method matcher example", function() {
+      it("should retain spy's original functionality", function() {
+        expect(this.methodVal).toEqual("no");
+        expect(this.spy).not.toHaveBeenCalledOn(this);
+        this.api.myMethod.call(this, "yes");
+        expect(this.methodVal).toEqual("yes");
+        expect(this.spy).toHaveBeenCalledOn(this);
+      });
+    });
+    
+
+    
+  });
 });
