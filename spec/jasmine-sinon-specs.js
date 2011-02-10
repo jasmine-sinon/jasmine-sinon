@@ -1,6 +1,6 @@
 describe("jasmine-sinon", function() {
   
-  describe("anonymous spy matchers", function() {
+  describe("spy matchers", function() {
     
     beforeEach(function() {
       this.spy = sinon.spy();
@@ -257,6 +257,72 @@ describe("jasmine-sinon", function() {
       });
       
     });
+    
+    // TODO exception matchers
+    
+    describe("returned/toHaveReturned", function() {
+      
+      it("should match when spy returned value", function() {
+        var spy = sinon.spy.create(function() {
+          return 1;
+        });
+        spy();
+        expect(spy.returned(1)).toBeTruthy();
+        expect(spy).toHaveReturned(1);
+      });
+      
+      it("should match when spy returned value amongst others", function() {
+        var values = [1,2,3];
+        var spy = sinon.spy.create(function() {
+          return values[spy.callCount];
+        });
+        spy();
+        spy();
+        expect(spy.returned(3)).toBeTruthy();
+        expect(spy).toHaveReturned(3);
+      });
+      
+      it("should not match when spy did not return value", function() {
+        var spy = sinon.spy();
+        spy();
+        expect(spy.returned(1)).toBeFalsy();
+        expect(spy).not.toHaveReturned(1);
+      });
+      
+    });
+    
+    describe("alwaysReturned/toHaveAlwaysReturned", function() {
+      
+      it("should match when spy always return value", function() {
+        var spy = sinon.spy.create(function() {
+          return 1;
+        });
+        spy();
+        spy();
+        expect(spy.alwaysReturned(1)).toBeTruthy();
+        expect(spy).toHaveAlwaysReturned(1);
+      });
+      
+      it("should not match when spy did not always return value", function() {
+        var values = [1,2,3];
+        var spy = sinon.spy.create(function() {
+          return values[spy.callCount];
+        });
+        spy();
+        spy();
+        expect(spy.alwaysReturned(3)).toBeFalsy();
+        expect(spy).not.toHaveAlwaysReturned(3);
+      });
+      
+      it("should not match when spy did not return value", function() {
+        var spy = sinon.spy();
+        spy();
+        expect(spy.alwaysReturned(1)).toBeFalsy();
+        expect(spy).not.toHaveAlwaysReturned(1);
+      });
+      
+    });
+
     
   });
   
