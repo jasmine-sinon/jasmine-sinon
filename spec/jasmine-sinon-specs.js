@@ -357,8 +357,64 @@ describe("jasmine-sinon", function() {
         expect(this.spy).toHaveBeenCalledOn(this);
       });
     });
-    
-
-    
+        
   });
+  
+  describe("individual spy calls", function() {
+
+    beforeEach(function() {
+      this.spy = sinon.spy();
+    });
+
+    describe("calledOn/toHaveBeenCalledOn", function() {
+
+      it("should return true if obj was scope for call", function() {
+        this.spy.call(this);
+        var spyCall = this.spy.getCall(0);
+        expect(spyCall.calledOn(this)).toBeTruthy();
+        expect(spyCall).toHaveBeenCalledOn(this);
+      });
+
+      it("should not return true if scope was something else", function() {
+        this.spy.call('foo');
+        var spyCall = this.spy.getCall(0);
+        expect(spyCall.calledOn(this)).toBeFalsy();
+        expect(spyCall).not.toHaveBeenCalledOn(this);
+      });
+
+    });
+
+    describe("calledWith/toHaveBeenCalledWith", function() {
+
+      it("should return true if call received arguments", function() {
+        this.spy('foo', 'bar');
+        var spyCall = this.spy.getCall(0);
+        expect(spyCall.calledWith('foo', 'bar')).toBeTruthy();
+        expect(spyCall).toHaveBeenCalledWith('foo', 'bar');
+      });
+
+      it("should not return true if call did not receive arguments", function() {
+        this.spy('fooble', 'barble');
+        var spyCall = this.spy.getCall(0);
+        expect(spyCall.calledWith('foo','bar')).toBeFalsy();
+        expect(spyCall).not.toHaveBeenCalledWith('foo','bar');
+      });
+
+    });
+    
+    describe("calledWithExactly/toHaveBeenCalledWithExactly", function() {
+      
+      it("should return true if received provided arguments and no others", function() {
+        this.spy('foo','bar');
+        var spyCall = this.spy.getCall(0);
+        expect(spyCall.calledWithExactly('foo','bar')).toBeTruthy();
+        expect(spyCall).toHaveBeenCalledWithExactly('foo','bar');
+      });
+      
+    });
+    
+    // TODO individual spy call exception matchers
+
+  });
+  
 });
