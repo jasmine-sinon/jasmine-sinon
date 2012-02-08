@@ -259,6 +259,7 @@ describe("jasmine-sinon", function() {
     });
 
     describe("threw/toHaveThrew", function() {
+
       beforeEach(function() {
         this.spy = sinon.spy.create();
 
@@ -319,6 +320,115 @@ describe("jasmine-sinon", function() {
         this.spy();
         expect(this.spy.threw("TypeError")).toBeFalsy();
         expect(this.spy).not.toHaveThrew("TypeError");
+      });
+
+    });
+
+    describe("alwaysThrew/toHaveAlwaysThrew", function() {
+
+      beforeEach(function() {
+        this.spy = sinon.spy.create();
+
+        this.spyWithTypeError = sinon.spy.create(function () {
+          throw new TypeError();
+        });
+      });
+
+      it("should match exception thrown by function", function() {
+        var err = new Error();
+
+        var spy = sinon.spy.create(function () {
+          throw err;
+        });
+
+        try {
+          spy();
+        } catch (e) {}
+
+        expect(spy.alwaysThrew(err)).toBeTruthy();
+        expect(spy).toHaveAlwaysThrew(err);
+      });
+
+      it("should match when spy threw exception", function() {
+        try {
+          this.spyWithTypeError();
+        } catch(e) {}
+
+        expect(this.spyWithTypeError.alwaysThrew()).toBeTruthy();
+        expect(this.spyWithTypeError).toHaveAlwaysThrew();
+      });
+
+      it("should not match when spy did not throw", function() {
+        this.spy();
+        expect(this.spy.alwaysThrew()).toBeFalsy();
+        expect(this.spy).not.toHaveAlwaysThrew();
+      });
+
+      it("should match when string type matches", function() {
+        try {
+          this.spyWithTypeError();
+        } catch(e) {}
+
+        expect(this.spyWithTypeError.alwaysThrew("TypeError")).toBeTruthy();
+        expect(this.spyWithTypeError).toHaveAlwaysThrew("TypeError");
+      });
+
+      it("should not match when string did not match", function() {
+        try {
+          this.spyWithTypeError();
+        } catch(e) {}
+
+        expect(this.spyWithTypeError.alwaysThrew("Error")).toBeFalsy();
+        expect(this.spyWithTypeError).not.toHaveAlwaysThrew("Error");
+      });
+
+      it("should not match when spy did not throw specified error", function() {
+        this.spy();
+        expect(this.spy.alwaysThrew("TypeError")).toBeFalsy();
+        expect(this.spy).not.toHaveAlwaysThrew("TypeError");
+      });
+
+      it("should not match when some calls did not throw", function() {
+        var spy = sinon.spy.create(function () {
+          if (spy.callCount === 0) {
+            throw new Error();
+          }
+        });
+
+        try {
+          spy();
+        } catch (e) {}
+
+        spy();
+
+        expect(spy.alwaysThrew()).toBeFalsy();
+        expect(spy).not.toHaveAlwaysThrew();
+      });
+
+      it("should match when all calls threw exception", function() {
+        try {
+          this.spyWithTypeError();
+        } catch(e) {}
+
+        try {
+          this.spyWithTypeError();
+        } catch(e) {}
+
+        expect(this.spyWithTypeError.alwaysThrew()).toBeTruthy();
+        expect(this.spyWithTypeError).toHaveAlwaysThrew();
+      });
+
+      it("should match when all calls threw same type", function() {
+        try {
+          this.spyWithTypeError();
+        } catch(e) {}
+
+        try {
+          this.spyWithTypeError();
+        } catch(e) {}
+
+        expect(this.spyWithTypeError.alwaysThrew("TypeError")).toBeTruthy();
+        expect(this.spyWithTypeError).toHaveAlwaysThrew("TypeError");
       });
 
     });
