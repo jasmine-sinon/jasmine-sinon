@@ -258,7 +258,7 @@ describe("jasmine-sinon", function() {
 
     });
 
-    describe("threw/toHaveThrew", function() {
+    describe("threw/toHaveThrown", function() {
 
       beforeEach(function() {
         this.spy = sinon.spy.create();
@@ -280,7 +280,7 @@ describe("jasmine-sinon", function() {
         } catch (e) {}
 
         expect(spy.threw(err)).toBeTruthy();
-        expect(spy).toHaveThrew(err);
+        expect(spy).toHaveThrown(err);
       });
 
       it("should match when spy threw exception", function() {
@@ -289,13 +289,13 @@ describe("jasmine-sinon", function() {
         } catch(e) {}
 
         expect(this.spyWithTypeError.threw()).toBeTruthy();
-        expect(this.spyWithTypeError).toHaveThrew();
+        expect(this.spyWithTypeError).toHaveThrown();
       });
 
       it("should not match when spy did not throw", function() {
         this.spy();
         expect(this.spy.threw()).toBeFalsy();
-        expect(this.spy).not.toHaveThrew();
+        expect(this.spy).not.toHaveThrown();
       });
 
       it("should match when string type matches", function() {
@@ -304,7 +304,7 @@ describe("jasmine-sinon", function() {
         } catch(e) {}
 
         expect(this.spyWithTypeError.threw("TypeError")).toBeTruthy();
-        expect(this.spyWithTypeError).toHaveThrew("TypeError");
+        expect(this.spyWithTypeError).toHaveThrown("TypeError");
       });
 
       it("should not match when string did not match", function() {
@@ -313,18 +313,18 @@ describe("jasmine-sinon", function() {
         } catch(e) {}
 
         expect(this.spyWithTypeError.threw("Error")).toBeFalsy();
-        expect(this.spyWithTypeError).not.toHaveThrew("Error");
+        expect(this.spyWithTypeError).not.toHaveThrown("Error");
       });
 
       it("should not match when spy did not throw specified error", function() {
         this.spy();
         expect(this.spy.threw("TypeError")).toBeFalsy();
-        expect(this.spy).not.toHaveThrew("TypeError");
+        expect(this.spy).not.toHaveThrown("TypeError");
       });
 
     });
 
-    describe("alwaysThrew/toHaveAlwaysThrew", function() {
+    describe("alwaysThrew/toHaveAlwaysThrown", function() {
 
       beforeEach(function() {
         this.spy = sinon.spy.create();
@@ -346,7 +346,7 @@ describe("jasmine-sinon", function() {
         } catch (e) {}
 
         expect(spy.alwaysThrew(err)).toBeTruthy();
-        expect(spy).toHaveAlwaysThrew(err);
+        expect(spy).toHaveAlwaysThrown(err);
       });
 
       it("should match when spy threw exception", function() {
@@ -355,13 +355,13 @@ describe("jasmine-sinon", function() {
         } catch(e) {}
 
         expect(this.spyWithTypeError.alwaysThrew()).toBeTruthy();
-        expect(this.spyWithTypeError).toHaveAlwaysThrew();
+        expect(this.spyWithTypeError).toHaveAlwaysThrown();
       });
 
       it("should not match when spy did not throw", function() {
         this.spy();
         expect(this.spy.alwaysThrew()).toBeFalsy();
-        expect(this.spy).not.toHaveAlwaysThrew();
+        expect(this.spy).not.toHaveAlwaysThrown();
       });
 
       it("should match when string type matches", function() {
@@ -370,7 +370,7 @@ describe("jasmine-sinon", function() {
         } catch(e) {}
 
         expect(this.spyWithTypeError.alwaysThrew("TypeError")).toBeTruthy();
-        expect(this.spyWithTypeError).toHaveAlwaysThrew("TypeError");
+        expect(this.spyWithTypeError).toHaveAlwaysThrown("TypeError");
       });
 
       it("should not match when string did not match", function() {
@@ -379,13 +379,13 @@ describe("jasmine-sinon", function() {
         } catch(e) {}
 
         expect(this.spyWithTypeError.alwaysThrew("Error")).toBeFalsy();
-        expect(this.spyWithTypeError).not.toHaveAlwaysThrew("Error");
+        expect(this.spyWithTypeError).not.toHaveAlwaysThrown("Error");
       });
 
       it("should not match when spy did not throw specified error", function() {
         this.spy();
         expect(this.spy.alwaysThrew("TypeError")).toBeFalsy();
-        expect(this.spy).not.toHaveAlwaysThrew("TypeError");
+        expect(this.spy).not.toHaveAlwaysThrown("TypeError");
       });
 
       it("should not match when some calls did not throw", function() {
@@ -402,7 +402,7 @@ describe("jasmine-sinon", function() {
         spy();
 
         expect(spy.alwaysThrew()).toBeFalsy();
-        expect(spy).not.toHaveAlwaysThrew();
+        expect(spy).not.toHaveAlwaysThrown();
       });
 
       it("should match when all calls threw exception", function() {
@@ -415,7 +415,7 @@ describe("jasmine-sinon", function() {
         } catch(e) {}
 
         expect(this.spyWithTypeError.alwaysThrew()).toBeTruthy();
-        expect(this.spyWithTypeError).toHaveAlwaysThrew();
+        expect(this.spyWithTypeError).toHaveAlwaysThrown();
       });
 
       it("should match when all calls threw same type", function() {
@@ -428,7 +428,7 @@ describe("jasmine-sinon", function() {
         } catch(e) {}
 
         expect(this.spyWithTypeError.alwaysThrew("TypeError")).toBeTruthy();
-        expect(this.spyWithTypeError).toHaveAlwaysThrew("TypeError");
+        expect(this.spyWithTypeError).toHaveAlwaysThrown("TypeError");
       });
 
     });
