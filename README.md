@@ -89,11 +89,17 @@ In general, you should be able to translate a Sinon spy/stub/mock API method to 
         <td>alwaysReturned()</td>
         <td>toHaveAlwaysReturned()</td>
     </tr>
+    <tr>
+        <td>threw()</td>
+        <td>toHaveThrown()</td>
+    </tr>
+    <tr>
+        <td>alwaysThrew()</td>
+        <td>toHaveAlwaysThrown()</td>
+    </tr>
 </table>
 
 These matchers will work on spies, individual spy calls, stubs and mocks.
-
-As yet there are no matchers for Sinon's exception spying. You will have to match these using the standard Sinon API.
 
 ## Warning
 
@@ -104,3 +110,6 @@ The native Jasmine matchers that are overwritten are:
 * toHaveBeenCalled()
 * toHaveBeenCalledWith()
 
+## Contributors
+
+Thanks to [Augusto Rocha Elesbão](https://github.com/aelesbao) for adding Exception matchers.
