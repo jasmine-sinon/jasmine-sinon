@@ -258,6 +258,53 @@ describe("jasmine-sinon", function() {
 
     });
 
+    describe("calledWithMatch/toHaveBeenCalledWithMatch", function() {
+
+      it("should match when spy called with arguments that match", function() {
+        this.spy({arg1:'one', arg2:'two'});
+        expect(this.spy.calledWithMatch({arg1:'one'})).toBeTruthy();
+        expect(this.spy).toHaveBeenCalledWithMatch({arg1:'one'});
+        expect(this.spy.calledWithMatch({arg2:'two'})).toBeTruthy();
+        expect(this.spy).toHaveBeenCalledWithMatch({arg2:'two'});
+      });
+
+      it("should not match when spy called with different argument", function() {
+        this.spy({arg1:'one', arg2:'two'});
+        expect(this.spy.calledWithMatch({arg1:'two'})).toBeFalsy();
+        expect(this.spy).not.toHaveBeenCalledWithMatch({arg1:'two'});
+        expect(this.spy.calledWithMatch({arg1:'two', arg2:'two'})).toBeFalsy();
+        expect(this.spy).not.toHaveBeenCalledWithMatch({arg1:'two', arg2:'two'});
+      });
+
+    });
+
+
+    describe("alwaysCalledWithMatch/toHaveBeenAlwaysCalledWithMatch", function() {
+
+      it("should match when spy always called with matching arguments set", function() {
+        this.spy({arg1:'one', arg2:'two'});
+        this.spy({arg1:'one', arg2:'two'});
+        expect(this.spy.alwaysCalledWithMatch({arg1:'one'})).toBeTruthy();
+        expect(this.spy).toHaveBeenAlwaysCalledWithMatch({arg1:'one'});
+        expect(this.spy.alwaysCalledWithMatch({arg2:'two'})).toBeTruthy();
+        expect(this.spy).toHaveBeenAlwaysCalledWithMatch({arg2:'two'});
+        expect(this.spy.alwaysCalledWithMatch({arg1:'one', arg2:'two'})).toBeTruthy();
+        expect(this.spy).toHaveBeenAlwaysCalledWithMatch({arg1:'one', arg2:'two'});
+      });
+
+      it("should not match when spy called with differing argument set", function() {
+        this.spy({arg1:'one', arg2:'two'});
+        this.spy({arg1:'one', arg2:'one'});
+        expect(this.spy.alwaysCalledWithMatch({arg1:'one', arg2:'two'})).toBeFalsy();
+        expect(this.spy).not.toHaveBeenAlwaysCalledWithMatch({arg1:'one', arg2:'two'});
+        expect(this.spy.alwaysCalledWithMatch({arg1:'one'})).toBeTruthy();
+        expect(this.spy).toHaveBeenAlwaysCalledWithMatch({arg1:'one'});
+        expect(this.spy.alwaysCalledWithMatch({arg2:'two'})).toBeFalsy();
+        expect(this.spy).not.toHaveBeenAlwaysCalledWithMatch({arg2:'two'});
+      });
+
+    });
+
     describe("threw/toHaveThrown", function() {
 
       beforeEach(function() {

@@ -82,6 +82,14 @@ In general, you should be able to translate a Sinon spy/stub/mock API method to 
         <td>toHaveBeenAlwaysCalledWithExactly()</td>
     </tr>
     <tr>
+        <td>calledWithMatch()</td>
+        <td>toHaveBeenCalledWithMatch()</td>
+    </tr>
+    <tr>
+        <td>alwaysCalledWithMatch()</td>
+        <td>toHaveBeenAlwaysCalledWithMatch()</td>
+    </tr>
+    <tr>
         <td>returned()</td>
         <td>toHaveReturned()</td>
     </tr>
