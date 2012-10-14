@@ -120,4 +120,7 @@ The native Jasmine matchers that are overwritten are:
 
 ## Contributors
 
-Thanks to [Augusto Rocha Elesbão](https://github.com/aelesbao) for adding Exception matchers.
+Thanks to:
+
+* @aelesbao for Exception matchers
+* @theinterned for, er, match matchers
