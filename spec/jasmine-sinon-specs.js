@@ -186,7 +186,7 @@ describe("jasmine-sinon", function() {
         this.spy.call({});
         expect(this.spy.alwaysCalledOn(this)).toBeFalsy();
         expect(this.spy).not.toHaveBeenAlwaysCalledOn(this);
-      })
+      });
 
     });
 
@@ -554,7 +554,7 @@ describe("jasmine-sinon", function() {
         myMethod: function(val) {
           this.methodVal = val;
         }
-      }
+      };
       this.spy = sinon.spy(this.api, "myMethod");
     });
 
@@ -645,7 +645,7 @@ describe("jasmine-sinon", function() {
         foo: function() {
           return 'bar';
         }
-      }
+      };
       this.methodStub = sinon.stub(this.api,'foo');
     });
 
@@ -694,4 +694,37 @@ describe("jasmine-sinon", function() {
 
   });
 
+  describe("jasmine matchers gracefully overridden", function() {
+
+    beforeEach(function() {
+      this.methodVal = "no";
+      this.api = {
+        myMethod: function(val) {
+          this.methodVal = val;
+        }
+      };
+      spyOn(this.api, "myMethod").andCallThrough();
+    });
+    
+    describe("toHaveBeenCalled", function() {
+      it("should work for jasmine spy", function() {
+        expect(this.methodVal).toEqual("no");
+        expect(this.api.myMethod).not.toHaveBeenCalled();
+        this.api.myMethod.call(this, "yes");
+        expect(this.methodVal).toEqual("yes");
+        expect(this.api.myMethod).toHaveBeenCalled();
+      });
+    });
+    
+    describe("toHaveBeenCalledWith", function() {
+      it("should work for jasmine spy", function() {
+        expect(this.methodVal).toEqual("no");
+        expect(this.api.myMethod).not.toHaveBeenCalledWith("yes");
+        this.api.myMethod.call(this, "yes");
+        expect(this.methodVal).toEqual("yes");
+        expect(this.api.myMethod).toHaveBeenCalledWith("yes");
+      });
+    });
+    
+  });
 });
