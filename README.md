@@ -109,14 +109,7 @@ In general, you should be able to translate a Sinon spy/stub/mock API method to 
 
 These matchers will work on spies, individual spy calls, stubs and mocks.
 
-## Warning
-
-_jasmine-sinon_ currently overwrites any Jasmine matchers of the same name used for its own spying features. I plan to allow these to be optionally retained in the future.
-
-The native Jasmine matchers that are overwritten are:
-
-* toHaveBeenCalled()
-* toHaveBeenCalledWith()
+You can also use Jasmine spies alongside your Sinon spies. _jasmine-sinon_ will detect which you're using and use the appropriate matcher.
 
 ## Contributors
 
@@ -124,3 +117,4 @@ Thanks to:
 
 * @aelesbao for Exception matchers
 * @theinterned for, er, match matchers
+* @milichev for graceful spy matchers
