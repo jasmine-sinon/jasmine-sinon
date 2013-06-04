@@ -1,3 +1,8 @@
+if (typeof require === 'function' && typeof module === 'object') {
+  var sinon = require('sinon');
+  var jasmineSinon = require('../lib/jasmine-sinon.js');
+}
+
 describe('test stubs', function() {
   beforeEach(function() {
     this.anonStub = sinon.stub();

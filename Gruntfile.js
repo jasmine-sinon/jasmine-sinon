@@ -3,6 +3,11 @@
 module.exports = function(grunt) {
 
   grunt.initConfig({
+    jasmine_node: {
+      forceExit: true,
+      isVerbose: true
+    },
+
     jshint: {
       options: {
         jshintrc: '.jshintrc'
@@ -25,8 +30,9 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-karma-0.9.1');
+  grunt.loadNpmTasks('grunt-jasmine-node');
 
-  grunt.registerTask('test', ['jshint', 'karma:ci']);
+  grunt.registerTask('test', ['jshint', 'karma:ci', 'jasmine_node']);
   grunt.registerTask('default', 'test');
 
 };

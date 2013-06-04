@@ -30,6 +30,10 @@
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-jshint": "~0.6.0",
-    "grunt-karma-0.9.1": "~0.4.3"
+    "grunt-karma-0.9.1": "~0.4.3",
+    "grunt-jasmine-node": "~0.1.0"
+  },
+  "dependencies": {
+    "sinon": "~1.7.2"
   }
 }

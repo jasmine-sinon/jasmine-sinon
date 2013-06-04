@@ -1,3 +1,8 @@
+if (typeof require === 'function' && typeof module === 'object') {
+  var sinon = require('sinon');
+  var jasmineSinon = require('../lib/jasmine-sinon.js');
+}
+
 describe('jasmine matchers gracefully overridden', function() {
   beforeEach(function() {
     this.methodVal = 'no';

@@ -1,3 +1,8 @@
+if (typeof require === 'function' && typeof module === 'object') {
+  var sinon = require('sinon');
+  var jasmineSinon = require('../lib/jasmine-sinon.js');
+}
+
 describe('existing method spy matchers', function() {
   beforeEach(function() {
     this.methodVal = 'no';

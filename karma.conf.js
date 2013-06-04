@@ -14,7 +14,7 @@ frameworks = ['jasmine'];
 files = [
   'lib/sinon-1.4.2/*.js',
   'lib/jasmine-sinon.js',
-  'spec/*-spec.js'
+  'spec/*.spec.js'
 ];
 
 
