@@ -1,5 +1,7 @@
 # Jasmine matchers for Sinon.JS
 
+[![Build Status](https://travis-ci.org/froots/jasmine-sinon.png?branch=master)](https://travis-ci.org/froots/jasmine-sinon)
+
 _jasmine-sinon_ provides a set of custom matchers for using the [Sinon.JS](http://sinonjs.org/) spying, stubbing and mocking library with [Jasmine BDD](http://pivotal.github.com/jasmine/).
 
 Instead of:
