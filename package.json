@@ -4,7 +4,7 @@
   "description": "Jasmine BDD matchers for Sinon.JS",
   "main": "lib/jasmine-sinon.js",
   "scripts": {
-    "test": "grunt"
+    "test": "grunt travis"
   },
   "homepage": "http://github.com/froots/jasmine-sinon",
   "repository": {
