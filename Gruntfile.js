@@ -34,6 +34,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask('test', ['jshint', 'karma:ci', 'jasmine_node']);
   grunt.registerTask('default', 'test');
-  grunt.registerTask('travis', ['jasmine_node']);
+  grunt.registerTask('travis', ['jshint', 'jasmine_node']);
 
 };
