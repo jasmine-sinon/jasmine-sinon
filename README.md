@@ -5,24 +5,48 @@ _jasmine-sinon_ provides a set of custom matchers for using the [Sinon.JS](http:
 Instead of:
 
     expect(mySinonSpy.calledWith('foo')).toBeTruthy();
-    
+
 you can say:
 
     expect(mySinonSpy).toHaveBeenCalledWith('foo');
-    
+
 This is not only nicerer to look at in your purdy specs, but you get more descriptive failure output in your Jasmine spec runner.
 
 Instead of:
 
     Expected false to be truthy.
-    
+
 you get:
 
     Expected Function to have been called.
 
 ## Installation
 
-Just include <code>jasmine-sinon.js</code> in your Jasmine test runner file, or add it to <code>jasmine.yml</code> if you are using [jasmine-gem](https://github.com/pivotal/jasmine-gem). Don't forget to include [sinon.js](https://github.com/cjohansen/Sinon.JS).
+### Direct include
+
+Just include <code>lib/jasmine-sinon.js</code> in your Jasmine test runner file.
+Don't forget to include [sinon.js](https://github.com/cjohansen/Sinon.JS).
+
+### With [jasmine-gem](https://github.com/pivotal/jasmine-gem)
+
+Add it to <code>jasmine.yml</code>. Don't forget to include [sinon.js](https://github.com/cjohansen/Sinon.JS).
+
+### Node.js / NPM
+
+`npm install jasmine-sinon --save-dev`
+
+Then, in your jasmine spec:
+
+```javascript
+var sinon = require('sinon');
+require('jasmine-sinon');
+```
+
+### Using Bower
+
+`bower install jasmine-sinon --save-dev`
+
+Then, include `components/jasmine-sinon/index.js` in your test runner.
 
 ## Sinon.JS matchers
 
