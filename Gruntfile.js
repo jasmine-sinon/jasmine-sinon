@@ -23,7 +23,8 @@ module.exports = function(grunt) {
         reporters: 'dots'
       },
       ci: {
-        singleRun: true
+        singleRun: true,
+        browsers: ['Firefox']
       }
     }
   });
@@ -34,6 +35,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask('test', ['jshint', 'karma:ci', 'jasmine_node']);
   grunt.registerTask('default', 'test');
-  grunt.registerTask('travis', ['jshint', 'jasmine_node']);
+  grunt.registerTask('travis', ['jshint', 'karma:ci', 'jasmine_node']);
 
 };
