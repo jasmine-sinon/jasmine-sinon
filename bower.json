@@ -6,5 +6,8 @@
     "**/.*",
     "node_modules",
     "components"
-  ]
+  ],
+  "devDependencies": {
+    "sinonjs": "~1.7.1"
+  }
 }

@@ -12,7 +12,7 @@ frameworks = ['jasmine'];
 
 // list of files / patterns to load in the browser
 files = [
-  'lib/sinon-1.4.2/*.js',
+  'components/sinonjs/sinon.js',
   'lib/jasmine-sinon.js',
   'spec/*.spec.js'
 ];
