@@ -17,7 +17,7 @@ module.exports = function(grunt) {
 
     karma: {
       options: {
-        configFile: 'karma.conf.js'
+        configFile: './karma.conf.js'
       },
       dev: {
         reporters: 'dots'
