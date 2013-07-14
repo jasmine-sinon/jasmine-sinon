@@ -5,6 +5,12 @@
   "ignore": [
     "**/.*",
     "node_modules",
-    "components"
+    "components",
+    "spec",
+    "lib/**/*",
+    "!lib/jasmine-sinon.js",
+    "Gruntfile.js",
+    "karma.conf.js",
+    "package.json"
   ]
 }
