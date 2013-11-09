@@ -1,11 +1,12 @@
-'use strict';
-
 module.exports = function(grunt) {
+
+  'use strict';
 
   grunt.initConfig({
     jasmine_node: {
       forceExit: true,
-      isVerbose: true
+      isVerbose: false,
+      projectRoot: 'spec'
     },
 
     jshint: {
@@ -17,7 +18,7 @@ module.exports = function(grunt) {
 
     karma: {
       options: {
-        configFile: 'karma.conf.js'
+        configFile: 'karma.conf.coffee'
       },
       dev: {
         reporters: 'dots'
@@ -30,7 +31,7 @@ module.exports = function(grunt) {
   });
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-karma-0.9.1');
+  grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-jasmine-node');
 
   grunt.registerTask('test', ['jshint', 'karma:ci', 'jasmine_node']);
