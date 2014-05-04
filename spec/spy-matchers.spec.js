@@ -154,11 +154,16 @@ describe('spy matchers', function() {
 
   describe('calledOn/toHaveBeenCalledOn', function() {
     it('should match when spy called on expected object', function() {
-      expect(this.spy.calledOn(this)).toBeFalsy();
-      expect(this.spy).not.toHaveBeenCalledOn(this);
-      this.spy.call(this);
-      expect(this.spy.calledOn(this)).toBeTruthy();
-      expect(this.spy).toHaveBeenCalledOn(this);
+      var obj = {
+        toString: function() {
+          return 'my object'
+        }
+      };
+      expect(this.spy.calledOn(obj)).toBeFalsy();
+      expect(this.spy).not.toHaveBeenCalledOn(obj);
+      this.spy.call(obj);
+      expect(this.spy.calledOn(obj)).toBeTruthy();
+      expect(this.spy).toHaveBeenCalledOn(obj);
     });
   });
 
