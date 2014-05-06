@@ -299,6 +299,23 @@ describe('spy matchers', function() {
     })
   });
 
+  describe('neverCalledWith', function() {
+    it('should match when the spy was never called with the argument', function() {
+      this.spy('foo');
+      this.spy('bar');
+      expect(this.spy.neverCalledWith('baz')).toBeTruthy();
+      expect(this.spy).toHaveBeenNeverCalledWith('baz');
+    });
+
+    it('should not match when the spy was called with the argument', function() {
+      this.spy('foo');
+      this.spy('bar');
+      this.spy('baz');
+      expect(this.spy.neverCalledWith('baz')).toBeFalsy();
+      expect(this.spy).not.toHaveBeenNeverCalledWith('baz'); // OMG YUCK
+    });
+  });
+
   describe('threw/toHaveThrown', function() {
     beforeEach(function() {
       this.spy = sinon.spy.create();
