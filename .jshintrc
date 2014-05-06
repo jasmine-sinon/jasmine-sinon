@@ -59,6 +59,6 @@
   "white"         : false,
 
   "maxerr"        : 100,
-  "predef"        : [ "beforeEach" ],
+  "predef"        : [ "beforeEach", "jasmine", "jasmineRequire" ],
   "indent"        : 2
 }
