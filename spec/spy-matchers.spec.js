@@ -285,6 +285,20 @@ describe('spy matchers', function() {
     });
   });
 
+  describe('calledWithNew', function() {
+    it('should match when spy called with new operator', function() {
+      var newSpy = new this.spy();
+      expect(this.spy.calledWithNew()).toBeTruthy();
+      expect(this.spy).toHaveBeenCalledWithNew();
+    });
+
+    it('should not match when spy not called with new', function() {
+      this.spy();
+      expect(this.spy.calledWithNew()).toBeFalsy();
+      expect(this.spy).not.toHaveBeenCalledWithNew();
+    })
+  });
+
   describe('threw/toHaveThrown', function() {
     beforeEach(function() {
       this.spy = sinon.spy.create();
