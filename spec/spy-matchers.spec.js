@@ -316,6 +316,22 @@ describe('spy matchers', function() {
     });
   });
 
+  describe('neverCalledWithMatch', function() {
+    it('should match when the spy was never called with matching arguments', function() {
+      var obj = {foo: '1', bar: '2'};
+      this.spy(obj);
+      expect(this.spy.neverCalledWithMatch({baz: '1'})).toBeTruthy();
+      expect(this.spy).toHaveBeenNeverCalledWithMatch({baz: '1'});
+    });
+
+    it('should not match when the spy was called with matching arguments', function() {
+      var obj = {foo: '1', bar: '2'};
+      this.spy(obj);
+      expect(this.spy.neverCalledWithMatch({foo: '1'})).toBeFalsy();
+      expect(this.spy).not.toHaveBeenNeverCalledWithMatch({foo:'1'});
+    });
+  });
+
   describe('threw/toHaveThrown', function() {
     beforeEach(function() {
       this.spy = sinon.spy.create();
