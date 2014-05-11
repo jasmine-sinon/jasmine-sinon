@@ -58,96 +58,29 @@ Then, include `components/jasmine-sinon/index.js` in your test runner.
 
 In general, you should be able to translate a Sinon spy/stub/mock API method to a _jasmine-sinon_ matcher by prepending _toHaveBeen_ to the front of the method name. For example, the Sinon.JS spy method <code>called</code> becomes <code>toHaveBeenCalled</code>. There are one or two exceptions to this rule, so the full list of matchers is given below.
 
-<table>
-    <tr>
-        <th>Sinon.JS property / method</th>
-        <th>jasmine-sinon matcher</th>
-    </tr>
-    <tr>
-        <td>`called`</td>
-        <td>`toHaveBeenCalled()`</td>
-    </tr>
-    <tr>
-        <td>`calledOnce`</td>
-        <td>`toHaveBeenCalledOnce()`</td>
-    </tr>
-    <tr>
-        <td>`calledTwice`</td>
-        <td>`toHaveBeenCalledTwice()`</td>
-    </tr>
-    <tr>
-        <td>`calledThrice`</td>
-        <td>`toHaveBeenCalledThrice()`</td>
-    </tr>
-    <tr>
-        <td>`calledBefore()`</td>
-        <td>`toHaveBeenCalledBefore()`</td>
-    </tr>
-    <tr>
-        <td>`calledAfter()`</td>
-        <td>`toHaveBeenCalledAfter()`</td>
-    </tr>
-    <tr>
-        <td>`calledOn()`</td>
-        <td>`toHaveBeenCalledOn()`</td>
-    </tr>
-    <tr>
-        <td>`alwaysCalledOn()`</td>
-        <td>`toHaveBeenAlwaysCalledOn()`</td>
-    </tr>
-    <tr>
-        <td>`calledWith()`</td>
-        <td>`toHaveBeenCalledWith()`</td>
-    </tr>
-    <tr>
-        <td>`alwaysCalledWith()`</td>
-        <td>`toHaveBeenAlwaysCalledWith()`</td>
-    </tr>
-    <tr>
-        <td>`calledWithExactly()`</td>
-        <td>`toHaveBeenCalledWithExactly()`</td>
-    </tr>
-    <tr>
-        <td>`alwaysCalledWithExactly()`</td>
-        <td>`toHaveBeenAlwaysCalledWithExactly()`</td>
-    </tr>
-    <tr>
-        <td>`calledWithMatch()`</td>
-        <td>`toHaveBeenCalledWithMatch()`</td>
-    </tr>
-    <tr>
-        <td>`alwaysCalledWithMatch()`</td>
-        <td>`toHaveBeenAlwaysCalledWithMatch()`</td>
-    </tr>
-    <tr>
-        <td>`calledWithNew`</td>
-        <td>`toHaveBeenCalledWithNew()` `>=v0.4`</td>
-    </tr>
-    <tr>
-        <td>`neverCalledWith`</td>
-        <td>`toHaveBeenNeverCalledWith()` `>=v0.4`</td>
-    </tr>
-    <tr>
-        <td>`neverCalledWithMatch()`</td>
-        <td>`toHaveBeenNeverCalledWithMatch()` `>=v0.4`</td>
-    </tr>
-    <tr>
-        <td>`threw()`</td>
-        <td>`toHaveThrown()`</td>
-    </tr>
-    <tr>
-        <td>`alwaysThrew()`</td>
-        <td>`toHaveAlwaysThrown()`</td>
-    </tr>
-    <tr>
-        <td>`returned()`</td>
-        <td>`toHaveReturned()`</td>
-    </tr>
-    <tr>
-        <td>`alwaysReturned()`</td>
-        <td>`toHaveAlwaysReturned()`</td>
-    </tr>
-</table>
+| Sinon.JS property / method | jasmine-sinon matcher |
+|----------------------------|-----------------------|
+| `called` | `toHaveBeenCalled()` |
+| `calledOnce` | `toHaveBeenCalledOnce()` |
+| `calledTwice` | `toHaveBeenCalledTwice()` |
+| `calledThrice` | `toHaveBeenCalledThrice()` |
+| `calledBefore()` | `toHaveBeenCalledBefore()` |
+| `calledAfter()` | `toHaveBeenCalledAfter()` |
+| `calledOn()` | `toHaveBeenCalledOn()` |
+| `alwaysCalledOn()` | `toHaveBeenAlwaysCalledOn()` |
+| `calledWith()` | `toHaveBeenCalledWith()` |
+| `alwaysCalledWith()` | `toHaveBeenAlwaysCalledWith()` |
+| `calledWithExactly()` | `toHaveBeenCalledWithExactly()` |
+| `alwaysCalledWithExactly()` | `toHaveBeenAlwaysCalledWithExactly()` |
+| `calledWithMatch()` | `toHaveBeenCalledWithMatch()` |
+| `alwaysCalledWithMatch()` | `toHaveBeenAlwaysCalledWithMatch()` |
+| `calledWithNew` | `toHaveBeenCalledWithNew()` `>=v0.4` |
+| `neverCalledWith` | `toHaveBeenNeverCalledWith()` `>=v0.4` |
+| `neverCalledWithMatch()` | `toHaveBeenNeverCalledWithMatch()` `>=v0.4` |
+| `threw()` | `toHaveThrown()` |
+| `alwaysThrew()` | `toHaveAlwaysThrown()` |
+| `returned()` | `toHaveReturned()` |
+| `alwaysReturned()` | `toHaveAlwaysReturned()` |
 
 These matchers will work on spies, individual spy calls, stubs and mocks.
 
@@ -156,8 +89,8 @@ You can use Jasmine spies alongside your Sinon spies. _jasmine-sinon_ will detec
 You can also use Jasmine's fuzzy matchers `any()` and `objectContaining()` in expectations, e.g.
 
 ```javascript
-    expect(spy).toHaveBeenCalledWith(jasmine.any(Date));
-    expect(spy).toHaveBeenCalledWith(jasmine.objectContaining({name: 'froots'}))
+expect(spy).toHaveBeenCalledWith(jasmine.any(Date));
+expect(spy).toHaveBeenCalledWith(jasmine.objectContaining({name: 'froots'}))
 ```
 
 ## Contributors
