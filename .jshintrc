@@ -62,7 +62,7 @@
   "predef"        : [
     "beforeEach",
     "jasmine",
-    "jasmineRequire"
+    "jasmineRequire",
     "describe",
     "it",
     "beforeEach",
