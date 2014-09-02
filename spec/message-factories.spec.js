@@ -30,12 +30,12 @@ describe('message factories', function() {
 
     it('formats the message correctly', function () {
       expect(this.subject(false, this.spy)).
-        toEqual('Expected spy "spy" to have been called once. "spy" was called once.');
+        toEqual('Expected spy "spy" to have been called once. "spy" was called once:\n    spy().');
     });
 
     it('formats the message correctly with "not"', function () {
       expect(this.subject(true, this.spy)).
-        toEqual('Expected spy "spy" not to have been called once. "spy" was called once.');
+        toEqual('Expected spy "spy" not to have been called once. "spy" was called once:\n    spy().');
     });
   });
 
