@@ -19,10 +19,7 @@
     "sinon"
   ],
   "author": "Jim Newbery <james@tinnedfruit.com> (http://tinnedfruit.com)",
-  "license": {
-    "type": "BSD",
-    "url": "http://github.com/froots/jasmine-sinon/blob/master/LICENSE"
-  },
+  "license": "BSD-3-Clause",
   "readmeFilename": "README.md",
   "engines": {
     "node": ">=0.1.103"
