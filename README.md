@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/froots/jasmine-sinon.png?branch=master)](https://travis-ci.org/froots/jasmine-sinon)
 
-_jasmine-sinon_ provides a set of custom matchers for using the [Sinon.JS](http://sinonjs.org/) spying, stubbing and mocking library with [Jasmine BDD](http://pivotal.github.com/jasmine/).
+_jasmine-sinon_ provides a set of custom matchers for using the [Sinon.JS](http://sinonjs.org/) spying, stubbing and mocking library with [Jasmine BDD](https://jasmine.github.io/).
 
 Instead of:
 
@@ -33,7 +33,7 @@ If you are using Jasmine 1.x, use the latest 0.3.x release. For Jasmine 2, use 0
 Just include <code>lib/jasmine-sinon.js</code> in your Jasmine test runner file.
 Don't forget to include [sinon.js](https://github.com/cjohansen/Sinon.JS).
 
-### With [jasmine-gem](https://github.com/pivotal/jasmine-gem)
+### With [jasmine-gem](https://github.com/jasmine/jasmine-gem)
 
 Add it to <code>jasmine.yml</code>. Don't forget to include [sinon.js](https://github.com/cjohansen/Sinon.JS).
 
